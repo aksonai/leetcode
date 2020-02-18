@@ -1,18 +1,23 @@
+import java.util.Arrays;
 import java.util.HashMap;
 
 class Solution {
-    public static void twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> indexMap = new HashMap<Integer, Integer>();
+    public static int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> complementMap = new HashMap<Integer, Integer>();
         for (int i = 0; i < nums.length; i++) {
-            System.out.println(nums[i]);
+            if (complementMap.containsKey(nums[i])){
+                return new int[] {complementMap.get(nums[i]), i};
+            } else {
+                complementMap.put(target - nums[i], i);
+            }
         }
-        
+        return new int[] {};
     }
 
     public static void main(String[] args) {
-        int[] nums = {1,2,7,11};
-        int target = 13;
-        twoSum(nums, target);
-        // System.out.println(indexList);
+        int[] nums = {1,2,7,13};
+        int target = 4;
+        int[] res = twoSum(nums, target);
+        System.out.println(Arrays.toString(res));
     }
 }
