@@ -1,19 +1,19 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         substr = ''
-        substr_dict = {}
+        max_len = 0
         for c in s:
-            print('c: ', c)
             if c not in substr:
                 substr += c
-                print('substr: ', substr)
             else:
                 i = substr.index(c)
-                substr_dict[substr] = len(substr)
+                if len(substr) > max_len:
+                    max_len = len(substr)
                 substr = substr[i+1:] + c
                 
-        substr_dict[substr] = len(substr)
-        return max(substr_dict.values())
+        if len(substr) > max_len:
+            max_len = len(substr)
+        return max_len
 
 
 s = "aabaab!bb"
