@@ -8,13 +8,17 @@ class Solution:
             return ''
         longest = s[0]
         s_len = len(s)
+        s_copy = s[:]
         for i, c in enumerate(s):
-            if c in s[i+1:]:
-                next_i = s_len - s[::-1].index(c) - 1
-                potential_palindrome = s[i:next_i+1]
+            cut_s = s[i+1:]
+            potential_palindrome = c
+            while c in cut_s:
+                next_i = cut_s.index(c)
+                potential_palindrome = potential_palindrome + cut_s[:next_i+1]
                 if Solution.isPalindrome(potential_palindrome):
                     if len(potential_palindrome) > len(longest):
                         longest = potential_palindrome
+                cut_s = cut_s[next_i+1:]
         return longest
                         
                     
